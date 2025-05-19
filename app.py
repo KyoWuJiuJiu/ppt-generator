@@ -108,9 +108,14 @@ st.markdown("""
 - 每个产品编号可对应多张图  
 - 图像将右对齐，自动垂直分布在幻灯片上，高度固定为14cm
 
-####导出Excel和图片的方法如下
+#### 导出Excel和图片的方法如下
 """)
 st.image("SOL Export.png")
+st.markdown("""
+    1. 制作完成以后还需要手动把PPT应用到以下的template当中去.
+        a. 请点击下面按钮下载真正的Kmart Buy Trip的模板
+        b. 下载好了以后打开, 手动把通过程序制作出来的PPT手动复制到这个模板里面就可以了
+""")
 with open("Kmart Buy Trip Template.pptx", "rb") as f:
     btn = st.download_button(
         label="📥 点击下载 Kmart Buy Trip Template.pptx 文件",
