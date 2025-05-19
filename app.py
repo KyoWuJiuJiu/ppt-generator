@@ -10,27 +10,35 @@ import copy
 
 st.title("📊 Excel + 图片生成 PowerPoint")
 
-# 上传PPT模板
+with st.expander("📖 使用说明 / How to Use"):
+    st.markdown("""
+### 🧾 Excel 文件要求
+- 每份Excel文件应包含以下字段（列名必须一致）：
+    - `ITEM#`, `Item Description`, `Item Width(Inch)`, `Item Height (inch)`, `Item Depth (inch)`, `FOB NB`, `Retail AUD`
+- 单位：尺寸字段为英寸，将自动转换为厘米
+- 多个Excel文件将合并处理，列顺序不限
+
+### 🖼 图片命名规则
+- 命名格式： `ITEM#.jpg` 或 `ITEM#(1).jpg` 等
+- 每个产品编号可对应多张图
+- 图像将右对齐，自动垂直分布在幻灯片上，高度固定为18cm
+    """)
+
 ppt_file = st.file_uploader("上传 PPT 模板 (.pptx)", type=["pptx"])
-# 上传Excel文件
 excel_files = st.file_uploader("上传一个或多个 Excel 文件", type=["xlsx", "xls"], accept_multiple_files=True)
-# 上传图片
 image_files = st.file_uploader("上传产品图片（可多选）", type=["jpg", "jpeg", "png", "bmp", "gif"], accept_multiple_files=True)
 
 if ppt_file and excel_files:
     if st.button("生成 PowerPoint"):
         with tempfile.TemporaryDirectory() as tmpdir:
-            # 保存图片到临时文件夹
             image_folder = os.path.join(tmpdir, "images")
             os.makedirs(image_folder, exist_ok=True)
             for file in image_files:
                 with open(os.path.join(image_folder, file.name), "wb") as f:
                     f.write(file.getbuffer())
 
-            # 合并Excel数据
             df_all = pd.concat([pd.read_excel(f) for f in excel_files], ignore_index=True)
 
-            # 加载PPT模板
             ppt = Presentation(ppt_file)
             template_slide = ppt.slides[0]
             new_ppt = Presentation()
