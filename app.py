@@ -10,19 +10,20 @@ import copy
 
 st.title("📊 Excel + 图片生成 PowerPoint")
 
-with st.expander("📖 使用说明 / How to Use"):
-    st.markdown("""
-### 🧾 Excel 文件要求
-- 每份Excel文件应包含以下字段（列名必须一致）：
-    - `ITEM#`, `Item Description`, `Item Width(Inch)`, `Item Height (inch)`, `Item Depth (inch)`, `FOB NB`, `Retail AUD`
-- 单位：尺寸字段为英寸，将自动转换为厘米
-- 多个Excel文件将合并处理，列顺序不限
+# 说明直接展示，不使用折叠框
+st.markdown("### 📖 使用说明 / How to Use")
+st.markdown("""
+#### 🧾 Excel 文件要求  
+- 每份Excel文件应包含以下字段（列名必须一致）：  
+  `ITEM#`, `Item Description`, `Item Width(Inch)`, `Item Height (inch)`, `Item Depth (inch)`, `FOB NB`, `Retail AUD`  
+- 尺寸单位为英寸，脚本将自动转换为厘米  
+- 多个Excel文件将合并处理，列顺序不限  
 
-### 🖼 图片命名规则
-- 命名格式： `ITEM#.jpg` 或 `ITEM#(1).jpg` 等
-- 每个产品编号可对应多张图
-- 图像将右对齐，自动垂直分布在幻灯片上，高度固定为18cm
-    """)
+#### 🖼 图片命名规则  
+- 命名格式示例： `12345.jpg`, `12345(1).jpg`, `12345(2).jpg`  
+- 每个产品编号可对应多张图  
+- 图像将右对齐，自动垂直分布在幻灯片上，高度固定为18cm  
+""")
 
 ppt_file = st.file_uploader("上传 PPT 模板 (.pptx)", type=["pptx"])
 excel_files = st.file_uploader("上传一个或多个 Excel 文件", type=["xlsx", "xls"], accept_multiple_files=True)
