@@ -113,8 +113,8 @@ st.markdown("""
 st.image("SOL Export.png")
 st.markdown("""
     1. 制作完成以后还需要手动把PPT应用到以下的template当中去.
-        a. 请点击下面按钮下载真正的Kmart Buy Trip的模板
-        b. 下载好了以后打开, 手动把通过程序制作出来的PPT手动复制到这个模板里面就可以了
+        - 请点击下面按钮下载真正的Kmart Buy Trip的模板
+        - 下载好了以后打开, 手动把通过程序制作出来的PPT手动复制到这个模板里面就可以了
 """)
 with open("Kmart Buy Trip Template.pptx", "rb") as f:
     btn = st.download_button(
