@@ -15,29 +15,6 @@ ppt_file = "1.pptx"  # 固定使用项目中的模板文件
 excel_files = st.file_uploader("上传一个或多个 Excel 文件", type=["xlsx", "xls"], accept_multiple_files=True)
 image_files = st.file_uploader("上传产品图片（可多选）", type=["jpg", "jpeg", "png", "bmp", "gif"], accept_multiple_files=True)
 
-# 说明直接展示，不使用折叠框
-st.markdown("### 📖 使用说明 / How to Use")
-st.markdown("""
-#### 🧾 Excel 文件要求  
-- Excel文件请从SOL导出, 必须包含以下列（列名必须一致,请注意空格和大小写）:
-  `ITEM#`, `Item Description`, `Item Width (inch)`, `Item Height (inch)`, `Item Depth (inch)`, `FOB NB`, `Retail AUD`  
-- 尺寸单位为英寸，程序将自动转换为厘米
-- 多个Excel文件可以同时处理，列顺序不限
-- 可以包含其他多余的列, 程序不会处理其他多余的列.
-
-#### 🖼 图片命名规则  
-- 图片需手动命名,或者从SOL导出, 图片用5位数的Item Number命名.
-  - 图片从SOL导出的要求如下
-    - SOL里面确实已经插入了高清图片(用于做PPT的高质量图片)
-    - SOL的第一列的内容为Item Number, 这样从SOL导出的时候多维表格会自动用Item Number来给图片命名.
-- 命名格式示例： `12345.jpg`, `12345(1).jpg`, `12345(2).jpg`  
-- 每个产品编号可对应多张图  
-- 图像将右对齐，自动垂直分布在幻灯片上，高度固定为14cm
-
-####导出Excel和图片的方法如下
-""")
-st.image("SOL Export.png")
-
 if os.path.exists(ppt_file) and excel_files:
     if st.button("生成 PowerPoint"):
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -112,3 +89,26 @@ if os.path.exists(ppt_file) and excel_files:
             new_ppt.save(output)
             st.success("✅ 幻灯片已生成")
             st.download_button("📥 点击下载 PPT", output.getvalue(), file_name="output.pptx")
+
+# 说明直接展示，不使用折叠框
+st.markdown("### 📖 使用说明 / How to Use")
+st.markdown("""
+#### 🧾 Excel 文件要求  
+- Excel文件请从SOL导出, 必须包含以下列（列名必须一致,请注意空格和大小写）:
+  `ITEM#`, `Item Description`, `Item Width (inch)`, `Item Height (inch)`, `Item Depth (inch)`, `FOB NB`, `Retail AUD`  
+- 尺寸单位为英寸，程序将自动转换为厘米
+- 多个Excel文件可以同时处理，列顺序不限
+- 可以包含其他多余的列, 程序不会处理其他多余的列.
+
+#### 🖼 图片命名规则  
+- 图片需手动命名,或者从SOL导出, 图片用5位数的Item Number命名.
+  - 图片从SOL导出的要求如下
+    - SOL里面确实已经插入了高清图片(用于做PPT的高质量图片)
+    - SOL的第一列的内容为Item Number, 这样从SOL导出的时候多维表格会自动用Item Number来给图片命名.
+- 命名格式示例： `12345.jpg`, `12345(1).jpg`, `12345(2).jpg`  
+- 每个产品编号可对应多张图  
+- 图像将右对齐，自动垂直分布在幻灯片上，高度固定为14cm
+
+#### 导出Excel和图片的方法如下
+""")
+st.image("SOL Export.png")
