@@ -111,4 +111,10 @@ st.markdown("""
 ####导出Excel和图片的方法如下
 """)
 st.image("SOL Export.png")
-st.markdown('[📥 点击下载 Kmart Buy Trip Template.pptx 文件](Kmart Buy Trip Template.pptx)')
+with open("Kmart Buy Trip Template.pptx", "rb") as f:
+    btn = st.download_button(
+        label="📥 点击下载 Kmart Buy Trip Template.pptx 文件",
+        data=f,
+        file_name="Kmart Buy Trip Template.pptx",
+        mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    )
