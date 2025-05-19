@@ -10,7 +10,8 @@ import copy
 
 st.title("📊 Excel + 图片生成 PowerPoint")
 
-ppt_file = st.file_uploader("上传 PPT 模板 (.pptx)", type=["pptx"])
+ # ppt_file = st.file_uploader("上传 PPT 模板 (.pptx)", type=["pptx"])
+ppt_file = "1.pptx"  # 固定使用项目中的模板文件
 excel_files = st.file_uploader("上传一个或多个 Excel 文件", type=["xlsx", "xls"], accept_multiple_files=True)
 image_files = st.file_uploader("上传产品图片（可多选）", type=["jpg", "jpeg", "png", "bmp", "gif"], accept_multiple_files=True)
 
@@ -37,7 +38,7 @@ st.markdown("""
 """)
 st.image("SOL Export.png")
 
-if ppt_file and excel_files:
+if os.path.exists(ppt_file) and excel_files:
     if st.button("生成 PowerPoint"):
         with tempfile.TemporaryDirectory() as tmpdir:
             image_folder = os.path.join(tmpdir, "images")
