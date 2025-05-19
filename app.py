@@ -74,7 +74,7 @@ if os.path.exists(ppt_file) and excel_files:
 
             for _, row in df_all.iterrows():
                 row_data = {k.strip(): v for k, v in row.to_dict().items()}
-                for field in ["Item Width(Inch)", "Item Depth (inch)", "Item Height (inch)"]:
+                for field in ["Item Width (inch)", "Item Depth (inch)", "Item Height (inch)"]:
                     val = row_data.get(field, "")
                     try:
                         row_data[field] = round(float(val) * 2.54, 1) if val and not pd.isna(val) else ""
