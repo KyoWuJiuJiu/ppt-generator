@@ -89,7 +89,6 @@ if os.path.exists(ppt_file) and excel_files:
             new_ppt.save(output)
             st.success("✅ 幻灯片已生成")
             st.download_button("📥 点击下载 PPT", output.getvalue(), file_name="output.pptx")
-
 # 说明直接展示，不使用折叠框
 st.markdown("### 📖 使用说明 / How to Use")
 st.markdown("""
@@ -109,6 +108,7 @@ st.markdown("""
 - 每个产品编号可对应多张图  
 - 图像将右对齐，自动垂直分布在幻灯片上，高度固定为14cm
 
-#### 导出Excel和图片的方法如下
+####导出Excel和图片的方法如下
 """)
 st.image("SOL Export.png")
+st.markdown('[📥 点击下载 Kmart Buy Trip Template.pptx 文件](Kmart Buy Trip Template.pptx)')
