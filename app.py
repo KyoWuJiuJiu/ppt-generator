@@ -47,7 +47,11 @@ if os.path.exists(ppt_file) and excel_files:
                             for run in para.runs:
                                 text = run.text
                                 for col, val in data.items():
-                                    if pd.isna(val): val = ""
+                                    if pd.isna(val): 
+                                        val = ""
+                                    # 处理 ITEM# 中的 .0 问题
+                                    if isinstance(val, float) and val.is_integer():
+                                        val = int(val)
                                     text = text.replace(f"{{{col.strip()}}}", str(val))
                                 run.text = text
 
@@ -74,6 +78,12 @@ if os.path.exists(ppt_file) and excel_files:
 
             for _, row in df_all.iterrows():
                 row_data = {k.strip(): v for k, v in row.to_dict().items()}
+                for k in row_data:
+                    v = row_data[k]
+                    if isinstance(v, float) and v.is_integer():
+                        row_data[k] = str(int(v))
+                    else:
+                        row_data[k] = str(v).strip()
                 for field in ["Item Width (inch)", "Item Depth (inch)", "Item Height (inch)"]:
                     val = row_data.get(field, "")
                     try:
