@@ -73,7 +73,11 @@ if os.path.exists(ppt_file) and excel_files:
                         w, h = img.size
                         aspect_ratio = w / h if h else 1
                         pic_width = pic_height * aspect_ratio
-                    slide.shapes.add_picture(img_path, slide_width - right_margin - pic_width, current_top, height=pic_height)
+                    # 将图片水平居中地放在幻灯片左边区域（假设竖线在14cm处）
+                    available_width = Cm(14)
+                    left = (available_width - pic_width) / 2
+                    top = current_top
+                    slide.shapes.add_picture(img_path, left, top, height=pic_height)
                     current_top += pic_height + space
 
             for _, row in df_all.iterrows():
